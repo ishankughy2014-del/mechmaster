@@ -1,0 +1,1002 @@
+﻿```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MechMaster | Mechanical Engineering Hub</title>
+
+<style>
+:root {
+    --primary: #2563eb;
+    --secondary: #1e3a8a;
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --success: #16a34a;
+    --danger: #dc2626;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: white;
+    padding: 20px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #93c5fd;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+nav a:hover {
+    color: #bfdbfe;
+}
+
+.hero {
+    background: linear-gradient(135deg, #dbeafe, #eff6ff);
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    color: var(--secondary);
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 650px;
+    margin: auto;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 45px 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-title h2 {
+    font-size: 30px;
+    color: var(--secondary);
+}
+
+.section-title p {
+    color: var(--muted);
+}
+
+.search-box {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 30px;
+    padding: 14px 18px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-box:focus {
+    border-color: var(--primary);
+}
+
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+}
+
+.subject-card {
+    background: var(--card);
+    padding: 28px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.subject-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.subject-icon {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.subject-card h3 {
+    color: var(--secondary);
+    margin-bottom: 8px;
+}
+
+.subject-card p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.subject-card button {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 9px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.subject-card button:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.quiz-section {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 30px;
+    border: 1px solid var(--border);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: 0.3s;
+}
+
+.question {
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.option {
+    display: block;
+    padding: 15px;
+    margin: 12px 0;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.option:hover {
+    border-color: var(--primary);
+    background: #eff6ff;
+}
+
+.option input {
+    margin-right: 10px;
+}
+
+.option.correct {
+    background: #dcfce7;
+    border-color: var(--success);
+}
+
+.option.wrong {
+    background: #fee2e2;
+    border-color: var(--danger);
+}
+
+.feedback {
+    margin-top: 18px;
+    font-weight: bold;
+    min-height: 28px;
+}
+
+.score-box {
+    text-align: center;
+    padding: 30px;
+    display: none;
+}
+
+.score-box h2 {
+    font-size: 32px;
+    color: var(--secondary);
+    margin-bottom: 10px;
+}
+
+.notes-section {
+    display: none;
+    background: var(--card);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-top: 25px;
+}
+
+.notes-section h2 {
+    color: var(--secondary);
+    margin-bottom: 15px;
+}
+
+.notes-section ul {
+    margin-left: 20px;
+}
+
+.close-btn {
+    float: right;
+    background: var(--danger);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.feature {
+    padding: 25px;
+}
+
+.feature h3 {
+    margin: 10px 0;
+    color: var(--secondary);
+}
+
+.feature p {
+    color: var(--muted);
+}
+
+footer {
+    background: #172554;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+#backToTop {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    font-size: 18px;
+}
+
+body.dark {
+    --bg: #111827;
+    --card: #1f2937;
+    --text: #f9fafb;
+    --muted: #d1d5db;
+    --border: #374151;
+}
+
+body.dark .hero {
+    background: #1e293b;
+}
+
+body.dark .subject-card h3,
+body.dark .section-title h2,
+body.dark .quiz-section h2,
+body.dark .notes-section h2,
+body.dark .feature h3 {
+    color: #93c5fd;
+}
+
+body.dark .option:hover {
+    background: #374151;
+}
+
+body.dark .option.correct {
+    background: #14532d;
+}
+
+body.dark .option.wrong {
+    background: #7f1d1d;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .quiz-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="navbar">
+        <div class="logo">Mech<span>Master</span> ⚙️</div>
+
+        <nav>
+            <a onclick="goHome()">Home</a>
+            <a onclick="scrollToSubjects()">Subjects</a>
+            <a onclick="scrollToQuiz()">MCQ Quiz</a>
+            <a onclick="toggleDarkMode()">🌙</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero" id="home">
+    <h1>Mechanical Engineering Hub</h1>
+    <p>
+        Learn mechanical engineering concepts, revise important topics,
+        and test your knowledge with interactive MCQs.
+    </p>
+    <button class="btn" onclick="scrollToSubjects()">Explore Subjects</button>
+</section>
+
+<section class="container" id="subjects">
+
+    <div class="section-title">
+        <h2>Engineering Subjects</h2>
+        <p>Choose a subject to explore notes and practice questions.</p>
+    </div>
+
+    <input
+        type="text"
+        id="searchInput"
+        class="search-box"
+        placeholder="🔍 Search subjects..."
+        onkeyup="searchSubjects()"
+    >
+
+    <div class="subject-grid" id="subjectGrid">
+
+        <div class="subject-card" data-name="thermodynamics">
+            <div class="subject-icon">🔥</div>
+            <h3>Thermodynamics</h3>
+            <p>Laws of thermodynamics, cycles, entropy, and energy systems.</p>
+            <button onclick="showNotes('thermodynamics')">View Notes</button>
+        </div>
+
+        <div class="subject-card" data-name="heat transfer">
+            <div class="subject-icon">🌡️</div>
+            <h3>Heat Transfer</h3>
+            <p>Conduction, convection, radiation, boiling, and condensation.</p>
+            <button onclick="showNotes('heat')">View Notes</button>
+        </div>
+
+        <div class="subject-card" data-name="ic engines">
+            <div class="subject-icon">⚙️</div>
+            <h3>IC Engines</h3>
+            <p>SI engines, CI engines, combustion, knocking, and performance.</p>
+            <button onclick="showNotes('ic')">View Notes</button>
+        </div>
+
+        <div class="subject-card" data-name="fluid mechanics">
+            <div class="subject-icon">💧</div>
+            <h3>Fluid Mechanics</h3>
+            <p>Fluid properties, Bernoulli equation, flow, and turbines.</p>
+            <button onclick="showNotes('fluid')">View Notes</button>
+        </div>
+
+        <div class="subject-card" data-name="manufacturing">
+            <div class="subject-icon">🏭</div>
+            <h3>Manufacturing</h3>
+            <p>Casting, welding, machining, forming, and production processes.</p>
+            <button onclick="showNotes('manufacturing')">View Notes</button>
+        </div>
+
+        <div class="subject-card" data-name="strength of materials">
+            <div class="subject-icon">🔩</div>
+            <h3>Strength of Materials</h3>
+            <p>Stress, strain, bending, torsion, and failure theories.</p>
+            <button onclick="showNotes('som')">View Notes</button>
+        </div>
+
+    </div>
+
+    <div class="notes-section" id="notesBox">
+        <button class="close-btn" onclick="closeNotes()">Close</button>
+        <h2 id="notesTitle"></h2>
+        <div id="notesContent"></div>
+    </div>
+
+</section>
+
+<section class="container" id="quizSection">
+
+    <div class="section-title">
+        <h2>📝 MCQ Practice Quiz</h2>
+        <p>Test your mechanical engineering knowledge.</p>
+    </div>
+
+    <div class="quiz-section">
+
+        <div id="quizContent">
+
+            <div class="quiz-header">
+                <strong id="questionNumber">Question 1 of 20</strong>
+                <strong id="scoreDisplay">Score: 0</strong>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+
+            <div class="question" id="questionText"></div>
+
+            <div id="optionsContainer"></div>
+
+            <div class="feedback" id="feedback"></div>
+
+            <button class="btn" id="submitBtn" onclick="submitAnswer()">
+                Submit Answer
+            </button>
+
+            <button class="btn" id="nextBtn" onclick="nextQuestion()" style="display:none;">
+                Next Question →
+            </button>
+
+        </div>
+
+        <div class="score-box" id="scoreBox">
+            <h2>🎉 Quiz Completed!</h2>
+            <p id="finalScore"></p>
+            <p id="bestScore"></p>
+            <button class="btn" onclick="restartQuiz()">Try Again</button>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="container">
+    <div class="section-title">
+        <h2>Why Use MechMaster?</h2>
+    </div>
+
+    <div class="features">
+        <div class="feature">
+            <div class="subject-icon">📚</div>
+            <h3>Easy Learning</h3>
+            <p>Simple explanations for difficult engineering concepts.</p>
+        </div>
+
+        <div class="feature">
+            <div class="subject-icon">📝</div>
+            <h3>Practice MCQs</h3>
+            <p>Test yourself and improve your exam preparation.</p>
+        </div>
+
+        <div class="feature">
+            <div class="subject-icon">📱</div>
+            <h3>Mobile Friendly</h3>
+            <p>Use the website on computers, tablets, and phones.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <h3>MechMaster ⚙️</h3>
+    <p>Mechanical Engineering Learning Hub</p>
+    <p>© 2026 MechMaster. All rights reserved.</p>
+</footer>
+
+<button id="backToTop" onclick="goHome()">↑</button>
+
+<script>
+
+const questions = [
+    {
+        question: "Which law of thermodynamics states that energy can neither be created nor destroyed?",
+        options: ["Zeroth law", "First law", "Second law", "Third law"],
+        answer: 1
+    },
+    {
+        question: "The SI unit of entropy is:",
+        options: ["J/kg", "J/kg·K", "W/m·K", "N/m²"],
+        answer: 1
+    },
+    {
+        question: "Heat transfer through electromagnetic waves is called:",
+        options: ["Conduction", "Convection", "Radiation", "Diffusion"],
+        answer: 2
+    },
+    {
+        question: "The SI unit of thermal conductivity is:",
+        options: ["W/m·K", "J/kg·K", "W/m²", "N/m"],
+        answer: 0
+    },
+    {
+        question: "In an SI engine, ignition is initiated by:",
+        options: ["Fuel injector", "Spark plug", "Glow plug", "Carburettor"],
+        answer: 1
+    },
+    {
+        question: "In a CI engine, ignition occurs due to:",
+        options: ["Spark", "Compression temperature", "Battery", "Carburettor"],
+        answer: 1
+    },
+    {
+        question: "The Bernoulli equation is based on conservation of:",
+        options: ["Mass", "Momentum", "Energy", "Temperature"],
+        answer: 2
+    },
+    {
+        question: "The Reynolds number represents the ratio of:",
+        options: ["Inertial force to viscous force", "Pressure to gravity force", "Heat to work", "Mass to volume"],
+        answer: 0
+    },
+    {
+        question: "Which process is used to produce objects by pouring molten metal into a mould?",
+        options: ["Forging", "Casting", "Rolling", "Extrusion"],
+        answer: 1
+    },
+    {
+        question: "In welding, porosity is caused by:",
+        options: ["Gas entrapment", "Excessive hardness", "High density", "Low temperature only"],
+        answer: 0
+    },
+    {
+        question: "Stress is defined as:",
+        options: ["Force × area", "Force / area", "Area / force", "Force + area"],
+        answer: 1
+    },
+    {
+        question: "The SI unit of Young's modulus is:",
+        options: ["N", "J", "Pa", "W"],
+        answer: 2
+    },
+    {
+        question: "A heat exchanger is used to transfer:",
+        options: ["Mass only", "Heat between fluids", "Electricity only", "Pressure only"],
+        answer: 1
+    },
+    {
+        question: "The efficiency of a heat engine is always:",
+        options: ["Greater than 100%", "Equal to 100%", "Less than 100%", "Infinite"],
+        answer: 2
+    },
+    {
+        question: "Which device converts hydraulic energy into mechanical energy?",
+        options: ["Pump", "Hydraulic turbine", "Compressor", "Condenser"],
+        answer: 1
+    },
+    {
+        question: "The main function of a flywheel is to:",
+        options: ["Store energy and reduce speed fluctuations", "Increase fuel consumption", "Cool the engine", "Stop the engine"],
+        answer: 0
+    },
+    {
+        question: "Which manufacturing process removes material using a cutting tool?",
+        options: ["Casting", "Machining", "Forging", "Welding"],
+        answer: 1
+    },
+    {
+        question: "The COP of a refrigerator is defined as:",
+        options: ["Work input / refrigerating effect", "Refrigerating effect / work input", "Heat rejected / work", "Work / heat rejected"],
+        answer: 1
+    },
+    {
+        question: "The main purpose of an intercooler in a multistage compressor is to:",
+        options: ["Increase air temperature", "Reduce work of compression", "Stop compression", "Increase friction"],
+        answer: 1
+    },
+    {
+        question: "Which instrument is used to measure pressure?",
+        options: ["Thermometer", "Barometer", "Manometer", "Hygrometer"],
+        answer: 2
+    }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+function loadQuestion() {
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("questionNumber").innerText =
+        "Question " + (currentQuestion + 1) + " of " + questions.length;
+
+    document.getElementById("scoreDisplay").innerText =
+        "Score: " + score;
+
+    document.getElementById("questionText").innerText = q.question;
+
+    document.getElementById("progress").style.width =
+        ((currentQuestion + 1) / questions.length * 100) + "%";
+
+    const container = document.getElementById("optionsContainer");
+    container.innerHTML = "";
+
+    q.options.forEach((option, index) => {
+
+        const label = document.createElement("label");
+        label.className = "option";
+
+        label.innerHTML =
+            '<input type="radio" name="answer" value="' + index + '">' +
+            option;
+
+        container.appendChild(label);
+    });
+
+    document.getElementById("feedback").innerText = "";
+    document.getElementById("submitBtn").style.display = "inline-block";
+    document.getElementById("nextBtn").style.display = "none";
+
+    answered = false;
+}
+
+function submitAnswer() {
+
+    if (answered) return;
+
+    const selected = document.querySelector('input[name="answer"]:checked');
+
+    if (!selected) {
+        document.getElementById("feedback").innerText =
+            "⚠️ Please select an answer first.";
+        return;
+    }
+
+    answered = true;
+
+    const selectedAnswer = Number(selected.value);
+    const correctAnswer = questions[currentQuestion].answer;
+
+    const options = document.querySelectorAll(".option");
+
+    options.forEach((option, index) => {
+        option.style.pointerEvents = "none";
+
+        if (index === correctAnswer) {
+            option.classList.add("correct");
+        }
+
+        if (index === selectedAnswer && selectedAnswer !== correctAnswer) {
+            option.classList.add("wrong");
+        }
+    });
+
+    if (selectedAnswer === correctAnswer) {
+        score++;
+        document.getElementById("feedback").innerText =
+            "✅ Correct! Well done.";
+    } else {
+        document.getElementById("feedback").innerText =
+            "❌ Incorrect. The correct answer is: " +
+            questions[currentQuestion].options[correctAnswer];
+    }
+
+    document.getElementById("scoreDisplay").innerText =
+        "Score: " + score;
+
+    document.getElementById("submitBtn").style.display = "none";
+
+    if (currentQuestion < questions.length - 1) {
+        document.getElementById("nextBtn").style.display = "inline-block";
+    } else {
+        document.getElementById("nextBtn").innerText = "View Result";
+        document.getElementById("nextBtn").style.display = "inline-block";
+    }
+}
+
+function nextQuestion() {
+
+    if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        loadQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+
+    document.getElementById("quizContent").style.display = "none";
+    document.getElementById("scoreBox").style.display = "block";
+
+    const percentage = Math.round((score / questions.length) * 100);
+
+    document.getElementById("finalScore").innerText =
+        "You scored " + score + " out of " + questions.length +
+        " (" + percentage + "%).";
+
+    let best = localStorage.getItem("bestScore") || 0;
+
+    if (score > best) {
+        best = score;
+        localStorage.setItem("bestScore", best);
+    }
+
+    document.getElementById("bestScore").innerText =
+        "🏆 Your best score: " + best + " / " + questions.length;
+}
+
+function restartQuiz() {
+
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("quizContent").style.display = "block";
+    document.getElementById("scoreBox").style.display = "none";
+
+    loadQuestion();
+}
+
+function scrollToQuiz() {
+    document.getElementById("quizSection").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function scrollToSubjects() {
+    document.getElementById("subjects").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function goHome() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+
+    localStorage.setItem(
+        "darkMode",
+        document.body.classList.contains("dark")
+    );
+}
+
+function searchSubjects() {
+
+    const search = document.getElementById("searchInput").value.toLowerCase();
+
+    const cards = document.querySelectorAll(".subject-card");
+
+    cards.forEach(card => {
+
+        const name = card.getAttribute("data-name");
+
+        if (name.includes(search)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+
+function showNotes(subject) {
+
+    const title = document.getElementById("notesTitle");
+    const content = document.getElementById("notesContent");
+    const box = document.getElementById("notesBox");
+
+    box.style.display = "block";
+
+    if (subject === "thermodynamics") {
+        title.innerText = "🔥 Thermodynamics Notes";
+        content.innerHTML = `
+            <ul>
+                <li>First Law: Energy cannot be created or destroyed.</li>
+                <li>Second Law: Heat naturally flows from high temperature to low temperature.</li>
+                <li>Entropy is a measure of energy dispersal.</li>
+                <li>Important cycles: Otto, Diesel, Brayton, Rankine.</li>
+                <li>Efficiency = Useful output / Energy input.</li>
+            </ul>
+        `;
+    }
+
+    else if (subject === "heat") {
+        title.innerText = "🌡️ Heat Transfer Notes";
+        content.innerHTML = `
+            <ul>
+                <li>Conduction occurs mainly through molecular interaction.</li>
+                <li>Convection occurs through fluid motion.</li>
+                <li>Radiation occurs through electromagnetic waves.</li>
+                <li>Fourier's law: Q = -kA(dT/dx).</li>
+                <li>Newton's law of cooling: Q = hA(Ts - T∞).</li>
+            </ul>
+        `;
+    }
+
+    else if (subject === "ic") {
+        title.innerText = "⚙️ IC Engines Notes";
+        content.innerHTML = `
+            <ul>
+                <li>SI engines use spark ignition.</li>
+                <li>CI engines use compression ignition.</li>
+                <li>Otto cycle is commonly associated with SI engines.</li>
+                <li>Diesel cycle is commonly associated with CI engines.</li>
+                <li>Important topics: knocking, injection, efficiency, and emissions.</li>
+            </ul>
+        `;
+    }
+
+    else if (subject === "fluid") {
+        title.innerText = "💧 Fluid Mechanics Notes";
+        content.innerHTML = `
+            <ul>
+                <li>Continuity equation is based on conservation of mass.</li>
+                <li>Bernoulli equation is based on conservation of energy.</li>
+                <li>Reynolds number = Inertial force / Viscous force.</li>
+                <li>Laminar flow generally occurs at low Reynolds number.</li>
+                <li>Manometers measure pressure.</li>
+            </ul>
+        `;
+    }
+
+    else if (subject === "manufacturing") {
+        title.innerText = "🏭 Manufacturing Notes";
+        content.innerHTML = `
+            <ul>
+                <li>Casting produces components by pouring molten metal into a mould.</li>
+                <li>Forging shapes metal using compressive forces.</li>
+                <li>Welding joins materials using heat, pressure, or both.</li>
+                <li>Machining removes unwanted material.</li>
+                <li>Common processes: turning, milling, drilling, and grinding.</li>
+            </ul>
+        `;
+    }
+
+    else if (subject === "som") {
+        title.innerText = "🔩 Strength of Materials Notes";
+        content.innerHTML = `
+            <ul>
+                <li>Stress = Force / Area.</li>
+                <li>Strain = Change in length / Original length.</li>
+                <li>Young's modulus = Stress / Strain.</li>
+                <li>Torsion deals with twisting of shafts.</li>
+                <li>Bending stress occurs due to bending moments.</li>
+            </ul>
+        `;
+    }
+
+    box.scrollIntoView({ behavior: "smooth" });
+}
+
+function closeNotes() {
+    document.getElementById("notesBox").style.display = "none";
+}
+
+window.onscroll = function() {
+
+    const button = document.getElementById("backToTop");
+
+    if (document.documentElement.scrollTop > 300) {
+        button.style.display = "block";
+    } else {
+        button.style.display = "none";
+    }
+};
+
+window.onload = function() {
+
+    if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark");
+    }
+
+    loadQuestion();
+};
+
+</script>
+
+</body>
+</html>
+```
